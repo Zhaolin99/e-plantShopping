@@ -308,3 +308,4 @@ const handlePlantsClick = (e) => {
 }
 
 export default ProductList;
+

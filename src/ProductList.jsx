@@ -20,6 +20,9 @@ function ProductList(props) {
     const totalItems = () => {
         return cartItems.reduce((total, item) => total + item.quantity, 0);
     }
+    const addAlready = (itemName) => {
+        return cartItems.some((item) => item.name === itemName);
+    }
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -293,7 +296,12 @@ const handlePlantsClick = (e) => {
                     <h2>{plant.name}</h2>
                     <p>{plant.description}</p>
                     <p>{plant.cost}</p>
-                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                    <button 
+                        disabled={addAlready(plant.name)} 
+                        onClick={() => handleAddToCart({ name: plant.name, cost: plant.cost, image: plant.image })} 
+                        className='product-button'>
+                        Add to Cart
+                    </button>
                 </div>)}
                  </div>
             </div>)}
